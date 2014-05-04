@@ -5,11 +5,15 @@
 .idea
 
 # sbt
+.cache/
+.history/
+.lib/
 .settings/
 .project
 lib_managed/
 target/
-project/
+project/boot/
+project/plugins/project/
 
 # scala
 .classpath
