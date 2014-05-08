@@ -77,6 +77,8 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+
+    val evenNumbers = (x: Int) => x % 2 == 0
   }
 
   /**
@@ -86,7 +88,7 @@ class FunSetSuite extends FunSuite {
    * Once you finish your implementation of "singletonSet", exchange the
    * function "ignore" by "test".
    */
-  ignore("singletonSet(1) contains 1") {
+  test("singletonSet(1) contains 1") {
     
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -98,15 +100,67 @@ class FunSetSuite extends FunSuite {
        * the test fails. This helps identifying which assertion failed.
        */
       assert(contains(s1, 1), "Singleton")
+      assert(contains(s2, 2), "Singleton")
+      assert(contains(s3, 3), "Singleton")
     }
   }
 
-  ignore("union contains all elements") {
+  test("union contains all elements") {
     new TestSets {
       val s = union(s1, s2)
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+    }
+  }
+
+  test("intersect works correctly") {
+    new TestSets {
+      val s = intersect(s1, s2)
+      assert(!contains(s, 1), "Intersect 1")
+      assert(!contains(s, 2), "Intersect 2")
+    }
+  }
+
+  test("diff works correctly") {
+    new TestSets {
+      val s = diff(s1, s2)
+      assert(contains(s, 1), "Diff 1")
+      assert(!contains(s, 2), "Diff 2")
+    }
+  }
+
+  test("filter works correctly") {
+    new TestSets {
+      val s = filter(evenNumbers, x => x > 2 && x < 6)
+      assert(contains(s, 4), "Filter 1")
+      assert(!contains(s, 2), "Filter 2")
+      assert(!contains(s, 6), "Filter 2")
+    }
+  }
+
+  test("forall works correctly") {
+    new TestSets {
+      assert(forall(evenNumbers, x => x % 2 == 0), "Forall 1")
+      assert(!forall(evenNumbers, x => x % 2 == 1), "Forall 2")
+    }
+  }
+
+  test("exists works correctly") {
+    new TestSets {
+      assert(exists(evenNumbers, x => x == -1000), "Exists -1000")
+      assert(exists(evenNumbers, x => x == 2), "Exists 2")
+      assert(!exists(evenNumbers, x => x == 3), "Exists 3")
+      assert(!exists(evenNumbers, x => x == 12345), "Exists 12345")
+    }
+  }
+
+  test("map works correctly") {
+    new TestSets {
+      var before = (x: Int) => x > 2 && x < 6
+      // [3, 4, 5]
+      val after = map(before, x => x + 10)
+      assert(contains(after, 13))
     }
   }
 }
