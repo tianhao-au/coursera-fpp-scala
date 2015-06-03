@@ -3,7 +3,7 @@ object rationals {
   val y = new Rational(5, 7)
   val z = new Rational(3, 2)
 
-  y.add(y)
+  y add y
   x.sub(y).sub(z)
   x.less(y)
   x.max(y)
@@ -18,7 +18,7 @@ class Rational(x: Int, y: Int) {
 
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
   private def g = gcd(x, y)
-  def numer = x / g
+  def numer = x / g // called not quite often, val: quite often
   def denom = y / g
 
   def less(that: Rational) = numer * that.denom < that.numer * denom

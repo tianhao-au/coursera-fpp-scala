@@ -23,4 +23,10 @@ object test {
     fixedPoint(averageDamp(y => x / y))(1)
 
   sqrt(2)
+
+  def multiply(m: Int)(n: Int): Int = m * n
+  def timesTwo = multiply(2) _
+  def test(f: Int => Int)(v: Int) = f(v) + v
+  test(timesTwo)(3)
+  test(multiply(2))(3)
 }
