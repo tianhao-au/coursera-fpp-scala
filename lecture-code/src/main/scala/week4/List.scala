@@ -13,11 +13,11 @@ trait List[+T] {
 }
 
 class Cons[T](val head: T, val tail: List[T]) extends List[T] {
-  def isEmpty = false
+  def isEmpty: Boolean = false
 }
 
 object Nil extends List[Nothing] {
-  def isEmpty = true
+  def isEmpty: Boolean = true
 
   def head: Nothing = throw new NoSuchElementException("Nil.head")
 
@@ -25,8 +25,9 @@ object Nil extends List[Nothing] {
 }
 
 object List {
-  def apply[T](x1: T, x2: T): List[T] = new Cons(x1, new Cons(x2, Nil))
   def apply[T]() = Nil
+  def apply[T](x: T) = new Cons(x, Nil)
+  def apply[T](x1: T, x2: T): List[T] = new Cons(x1, new Cons(x2, Nil))
 }
 
 // Nil is list of Nothing, Nothing is subtype of string, list is covariant, so list of Nothing is subtype of list string
