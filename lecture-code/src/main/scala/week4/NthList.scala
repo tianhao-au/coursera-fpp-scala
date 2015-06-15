@@ -1,13 +1,13 @@
 package week4
 
-object nth {
+object NthList {
   def main(args: Array[String]) {
     nth(2, list)
     nth(-1, list)
     nth(4, list)
   }
 
-  def nth[T](n: Int, xs: List[T]): T = {
+  def nth[T](n: Int, xs: ScalaList[T]): T = {
     if (xs.isEmpty) {
       throw new IndexOutOfBoundsException
     }
