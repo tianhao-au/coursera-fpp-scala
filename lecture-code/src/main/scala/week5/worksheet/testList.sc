@@ -7,7 +7,7 @@ object testList {
   def posElems(xs: List[Int]): List[Int] = xs filter (x => x > 0)
   posElems(List(-2, -1, 0, 1, 2))
 
-  val nums = List(2, -4, 5, 7, 1)
+  val nums = List(1, 2, -4, 5, 7, 1)
   val fruits = List("apple", "pineapple", "orange", "banana")
 
   nums filter (x => x > 0)
@@ -38,11 +38,9 @@ object testList {
   xs.foldLeft(5) {(a, x) =>
     println("a: " + a + ", x: " + x)
     a + x}
-
   xs.foldRight(5) {(a, x) =>
     println("a: " + a + ", x: " + x)
     a + x}
-
   def concat[T](xs: List[T], ys: List[T]): List[T] =
     (xs foldRight ys) (_ :: _)
 }

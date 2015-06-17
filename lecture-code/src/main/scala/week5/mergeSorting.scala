@@ -1,6 +1,12 @@
 package week5
 
 object MergeSorting {
+  // without implicit
+  // (lt: (T, T) => Boolean),
+  // ((x: Int, y: Int) => x < y),
+  // ((x: String, y: String) => x.compareTo(y) < 0)
+  // Ordering.Int
+  // Ordering.String
   def mergeSort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = {
     val n = xs.length / 2
     if (n == 0) xs
